@@ -1,16 +1,18 @@
 # Sapphire Capitals — mobile layout hand-over note
 
-Prepared by Anirudha Talmale. Diagnosis run against the live pages on 15 Aug 2026.
+Prepared by Anirudha Talmale. Diagnosis run against the five live pages on 15 Aug 2026.
 
 ---
 
 ## 1. What is actually wrong
 
 It is not caching, not a theme update, not rogue inline CSS, and not an Elementor
-version conflict. It is a single mistake repeated 48 times.
+version conflict. It is a single mistake repeated 64 times.
 
-**48 Elementor widgets across the four pages carry a hard-coded horizontal padding
-of 100px–180px per side, and no tablet or mobile value was ever set for them.**
+**55 Elementor elements across the five pages carry a hard-coded horizontal
+padding of 72px–180px per side, and no tablet or mobile value was ever set for
+them.** On the fifth page the same mistake is expressed as `margin` rather than
+`padding`, on nine more widgets.
 
 The per-page Elementor stylesheets contain **zero `@media` rules**. That is the
 whole story in one fact — there is literally no mobile styling on these pages.
@@ -18,10 +20,11 @@ Every value in them is a desktop value that applies at every screen size.
 
 ```
 Elementor CSS files and how many responsive rules each one contains:
-  post-5037.css   24,228 bytes   0 @media rules
-  post-5276.css   22,971 bytes   0 @media rules
-  post-5453.css   22,926 bytes   0 @media rules
-  post-5456.css   20,365 bytes   0 @media rules
+  post-5037.css    24,228 bytes   0 @media rules
+  post-5276.css    22,971 bytes   0 @media rules
+  post-5453.css    22,926 bytes   0 @media rules
+  post-5456.css    20,365 bytes   0 @media rules
+  post-10840.css   14,406 bytes   0 @media rules
 ```
 
 ### The arithmetic
@@ -50,13 +53,19 @@ That is why the pages look the way they do on a phone.
 | swing-trading-stock-price-action-strategy | 18,661px | 253,776px | 13.6× |
 | swing-trading-volume-spike-stock-trading-strategy | 19,738px | 306,160px | 15.5× |
 | day-trading-intraday-seasonality-trading | 15,120px | 217,071px | 14.4× |
+| sapphire-capitals-analytic-suite | 11,076px | 16,024px | 1.4× |
+
+The analytic-suite page is far less badly affected because its worst value is
+72px per side rather than 175px — it never crosses into the one-character-per-line
+failure. It is still losing 144px of a 390px screen to margin.
 
 At 320px the seasonality page is **305,954px tall**. A visitor would have to
 scroll roughly 400 phone-screens to reach the footer.
 
 ### A detail worth knowing
 
-Many of the values are typed with a leading zero — `0175px`, `0100px`, `010px`.
+Many of the values are typed with a leading zero — `0175px`, `0100px`, `010px`,
+and on the analytic-suite page `072px`.
 CSS accepts a leading zero as a valid number, so `0175px` is silently parsed as
 **175px**. It is not ignored and it does not throw an error. This looks like it
 was typed by hand into Elementor's padding fields rather than dragged with the
@@ -67,11 +76,11 @@ slider, which also explains why the values are irregular
 
 ## 2. The three secondary problems
 
-**a. Hero background images do not scale.** Three of the four heroes have a
+**a. Hero background images do not scale.** Three of the five heroes have a
 background image with **no `background-size` and no `background-repeat`**. The
 browser default is `auto` + `repeat`, so a 1920px-wide JPEG renders at its native
 size and tiles down a 2,500px-tall mobile section. You can see the seam in the
-"before" screenshots. The fourth page (`post-5456.css`) does have
+"before" screenshots. The intraday page (`post-5456.css`) does have
 `background-size: cover`, which is why that page has always looked slightly
 different from the other three.
 
@@ -126,16 +135,23 @@ Elementor update, and an Elementor CSS regeneration all leave it untouched.
 
 | Block | What it does | Selector shape |
 |---|---|---|
-| 1 | Zeroes the horizontal padding on the 48 offending widgets below 1025px | `.elementor-element-{id} > .elementor-widget-container` |
-| 2 | Safety net — catches any *new* text/heading widget added later with the same mistake, on these four pages only | `.elementor-page-{5037,5276,5453,5456} .elementor-widget-text-editor > .elementor-widget-container` |
+| 1 | Zeroes the horizontal padding on the 55 offending elements below 1025px | `.elementor-element-{id}` and `.elementor-element-{id} > .elementor-widget-container` |
+| 2 | Safety net — catches any *new* text/heading widget added later with the same mistake, on these five pages only | `.elementor-page-{5037,5276,5453,5456,10840} .elementor-widget-text-editor > .elementor-widget-container` |
 | 3 | Fluid typography via `clamp()` | `.elementor-widget-heading .elementor-heading-title`, `.elementor-button`, and the four hero headline widget IDs |
 | 4 | Forces `cover` / `center` / `no-repeat` on section backgrounds below 1025px | `.elementor-section[class*="elementor-element-"]` |
 | 5 | Neutralises the negative margins on mobile | the 9 affected widget IDs |
 | 6 | Guards — `max-width: 100%` on sections/columns/widgets, `height: auto` on images | generic |
 | 7 | Caps button padding at 16px below 768px (button padding sits on the `<a>`, not the widget container, so block 1 does not reach it) | `.elementor-button` |
+| 8 | Zeroes the horizontal **margin** on the nine analytic-suite widgets that use `margin: 0px 72px` instead of padding | `.elementor-element-{id} > .elementor-widget-container` |
 
 Every rule is inside `@media (max-width: 1024px)` or `(max-width: 767px)`.
 **Nothing applies at desktop width.** That is verified below.
+
+Two rules are deliberately held to phones only (`max-width: 767px`) rather than
+tablets: the negative-margin removal (block 5) and the button type scaling
+(block 7). At tablet width the headline still wraps close to its desktop shape
+and the buttons still fit, so changing them there would be a redesign rather
+than a fix.
 
 ### The `clamp()` values
 
@@ -146,7 +162,7 @@ desktop rendering is byte-identical.
 hero headline    clamp(26px, 7.4vw, 63px)     was 63px flat
 section headings clamp(22px, 5.6vw, 40px)     was 40px flat
 body copy        clamp(16px, 4.4vw, 22px)     was 22px flat
-buttons          clamp(15px, 4vw,   22px)     was 36px flat
+buttons          clamp(15px, 4vw,   22px)     was 36px flat (phones only)
 ```
 
 ---
@@ -176,14 +192,20 @@ seasonality      1280 |        18,056         18,056  |      0 / 0       |     0
 price-action     1280 |        18,661         18,661  |      0 / 0       |     0 / 0   <-- unchanged
 volume-spike     1280 |        19,738         19,738  |      0 / 0       |     0 / 0   <-- unchanged
 intraday         1280 |        15,120         15,120  |      0 / 0       |     0 / 0   <-- unchanged
+analytic-suite   1280 |        11,076         11,076  |      0 / 0       |     0 / 0   <-- unchanged
+
+analytic-suite    390 |        16,024         10,080  |      0 / 0       |     0 / 0
+analytic-suite    320 |        21,195         11,748  |      0 / 0       |    63 / 0
 ```
 
 "narrow paras" counts `<p>` elements rendering under 120px wide — the
 one-character-per-line failure. It reaches zero on every page at every width.
 
+All five pages were measured at all nine widths: 45 measurements, zero failures.
+
 Horizontal overflow is **0px at every width on every page**, including 320px.
 
-Desktop height at 1280px is identical to the pixel before and after on all four
+Desktop height at 1280px is identical to the pixel before and after on all five
 pages, which is the check that matters for "did the fix break the desktop view" —
 it did not.
 
@@ -193,7 +215,7 @@ it did not.
 
 | Criterion | Status |
 |---|---|
-| No layout shifting or cut-off images at 320px and up | Met. 0px horizontal overflow at 320/360/390/412/430/540/767/1024/1280 on all four pages. |
+| No layout shifting or cut-off images at 320px and up | Met. 0px horizontal overflow at 320/360/390/412/430/540/767/1024/1280 on all five pages. |
 | Google Mobile-Friendly Test passes each URL | Expected to pass once deployed — the failure mode was tap-target spacing and content-wider-than-screen, both now resolved. Cannot be run until the plugin is live on a public URL; I will run it per URL after deployment and send you the results. |
 | Survives one full theme + plugin update cycle on staging | The fix lives in a plugin, not in Elementor data, not in the theme, and not in generated files. Astra updates, Elementor updates and Elementor CSS regeneration cannot reach it. Please still run the cycle on staging — I will re-run the measurements afterwards. |
 
@@ -227,7 +249,7 @@ What I have delivered is a CSS layer that holds the layout in place regardless o
 what the page data says. It is robust and it survives updates, but it is a layer
 over the problem, not a removal of it.
 
-The root-level fix is to open each of the 48 widgets in Elementor, switch to the
+The root-level fix is to open each of the 64 elements in Elementor, switch to the
 mobile and tablet device views, and set the horizontal padding to 0 there — which
 writes proper responsive values into `_elementor_data` and makes the generated
 CSS correct at source. Elementor's free version fully supports this; it needs no

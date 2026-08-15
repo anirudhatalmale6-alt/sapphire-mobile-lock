@@ -1,12 +1,12 @@
 /* =========================================================================
    sapphirecapitals.com - mobile lock-in stylesheet
    Author: Anirudha Talmale
-   Loaded from the Astra CHILD theme so Elementor CSS regeneration,
+   Loaded by the sapphire-mobile-lock plugin so Elementor CSS regeneration,
    Elementor updates and Astra updates cannot remove it.
 
    BLOCK 1 - the actual bug.
-   48 Elementor widgets carry a hard-coded horizontal padding of
-   100-180px PER SIDE with no tablet/mobile override (the per-page
+   55 Elementor elements (widgets, columns and inner sections) carry a
+   hard-coded horizontal padding of 72-180px PER SIDE with no tablet/mobile override (the per-page
    Elementor CSS files contain zero @media rules). On a 390px phone that
    leaves a 20px text column, so body copy renders one character per
    line and the page becomes ~240,000px tall instead of ~18,000px.
@@ -14,53 +14,115 @@
    CSS reads a leading zero as a valid number, so they are still 175px.
    ========================================================================= */
 @media (max-width: 1024px) {
+.elementor-element-0698f05,
 .elementor-element-0698f05 > .elementor-widget-container,
+.elementor-element-0f78e2f,
 .elementor-element-0f78e2f > .elementor-widget-container,
+.elementor-element-16b6380,
 .elementor-element-16b6380 > .elementor-widget-container,
+.elementor-element-18c7142,
 .elementor-element-18c7142 > .elementor-widget-container,
+.elementor-element-1a6215c,
+.elementor-element-1a6215c > .elementor-widget-container,
+.elementor-element-1ee4493,
 .elementor-element-1ee4493 > .elementor-widget-container,
+.elementor-element-22c34f3,
 .elementor-element-22c34f3 > .elementor-widget-container,
+.elementor-element-27b4bc0,
 .elementor-element-27b4bc0 > .elementor-widget-container,
+.elementor-element-3f4a4d7,
+.elementor-element-3f4a4d7 > .elementor-widget-container,
+.elementor-element-3f9c962,
+.elementor-element-3f9c962 > .elementor-widget-container,
+.elementor-element-417f45a,
 .elementor-element-417f45a > .elementor-widget-container,
+.elementor-element-4a7a850,
 .elementor-element-4a7a850 > .elementor-widget-container,
+.elementor-element-4b7eb8e,
 .elementor-element-4b7eb8e > .elementor-widget-container,
+.elementor-element-4d0d094,
 .elementor-element-4d0d094 > .elementor-widget-container,
+.elementor-element-50e8f75,
 .elementor-element-50e8f75 > .elementor-widget-container,
+.elementor-element-559844c,
+.elementor-element-559844c > .elementor-widget-container,
+.elementor-element-5b14f1f,
 .elementor-element-5b14f1f > .elementor-widget-container,
+.elementor-element-5c30b36,
 .elementor-element-5c30b36 > .elementor-widget-container,
+.elementor-element-5d04a0a,
+.elementor-element-5d04a0a > .elementor-widget-container,
+.elementor-element-6011d41,
 .elementor-element-6011d41 > .elementor-widget-container,
+.elementor-element-608e1f8,
 .elementor-element-608e1f8 > .elementor-widget-container,
+.elementor-element-6656d40,
 .elementor-element-6656d40 > .elementor-widget-container,
+.elementor-element-7209121,
 .elementor-element-7209121 > .elementor-widget-container,
+.elementor-element-7462fb4,
 .elementor-element-7462fb4 > .elementor-widget-container,
+.elementor-element-7d2a54f,
 .elementor-element-7d2a54f > .elementor-widget-container,
+.elementor-element-7d4a4fe,
 .elementor-element-7d4a4fe > .elementor-widget-container,
+.elementor-element-7f42d70,
 .elementor-element-7f42d70 > .elementor-widget-container,
+.elementor-element-820f404,
 .elementor-element-820f404 > .elementor-widget-container,
+.elementor-element-8361dbb,
 .elementor-element-8361dbb > .elementor-widget-container,
+.elementor-element-961fda1,
+.elementor-element-961fda1 > .elementor-widget-container,
+.elementor-element-96a6f39,
 .elementor-element-96a6f39 > .elementor-widget-container,
+.elementor-element-97cffe1,
 .elementor-element-97cffe1 > .elementor-widget-container,
+.elementor-element-9a1c965,
 .elementor-element-9a1c965 > .elementor-widget-container,
+.elementor-element-9b949d6,
 .elementor-element-9b949d6 > .elementor-widget-container,
+.elementor-element-9e03110,
 .elementor-element-9e03110 > .elementor-widget-container,
+.elementor-element-a0beddf,
 .elementor-element-a0beddf > .elementor-widget-container,
+.elementor-element-a6ec183,
 .elementor-element-a6ec183 > .elementor-widget-container,
+.elementor-element-aaf358e,
 .elementor-element-aaf358e > .elementor-widget-container,
+.elementor-element-ae3cd5f,
+.elementor-element-ae3cd5f > .elementor-widget-container,
+.elementor-element-af58b45,
 .elementor-element-af58b45 > .elementor-widget-container,
+.elementor-element-b2b1a77,
 .elementor-element-b2b1a77 > .elementor-widget-container,
+.elementor-element-b742b3e,
 .elementor-element-b742b3e > .elementor-widget-container,
+.elementor-element-b8eb3bd,
 .elementor-element-b8eb3bd > .elementor-widget-container,
+.elementor-element-bc2c375,
 .elementor-element-bc2c375 > .elementor-widget-container,
+.elementor-element-bd11625,
 .elementor-element-bd11625 > .elementor-widget-container,
+.elementor-element-c1d0a60,
 .elementor-element-c1d0a60 > .elementor-widget-container,
+.elementor-element-c290bcb,
 .elementor-element-c290bcb > .elementor-widget-container,
+.elementor-element-c838592,
 .elementor-element-c838592 > .elementor-widget-container,
+.elementor-element-ca26818,
 .elementor-element-ca26818 > .elementor-widget-container,
+.elementor-element-ca94a52,
 .elementor-element-ca94a52 > .elementor-widget-container,
+.elementor-element-d1dd92f,
 .elementor-element-d1dd92f > .elementor-widget-container,
+.elementor-element-d5ff52c,
 .elementor-element-d5ff52c > .elementor-widget-container,
+.elementor-element-dadd7d5,
 .elementor-element-dadd7d5 > .elementor-widget-container,
+.elementor-element-eb6f26a,
 .elementor-element-eb6f26a > .elementor-widget-container,
+.elementor-element-eb80170,
 .elementor-element-eb80170 > .elementor-widget-container {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -77,7 +139,9 @@
   .elementor-page-5453 .elementor-widget-text-editor    > .elementor-widget-container,
   .elementor-page-5453 .elementor-widget-heading        > .elementor-widget-container,
   .elementor-page-5456 .elementor-widget-text-editor    > .elementor-widget-container,
-  .elementor-page-5456 .elementor-widget-heading        > .elementor-widget-container {
+  .elementor-page-5456 .elementor-widget-heading        > .elementor-widget-container,
+  .elementor-page-10840 .elementor-widget-text-editor   > .elementor-widget-container,
+  .elementor-page-10840 .elementor-widget-heading       > .elementor-widget-container {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
@@ -90,7 +154,11 @@
   .elementor-widget-text-editor,
   .elementor-widget-text-editor p { font-size: clamp(16px, 4.4vw, 22px) !important; line-height: 1.6 !important; }
   .elementor-widget-heading .elementor-heading-title    { font-size: clamp(22px, 5.6vw, 40px) !important; line-height: 1.25 !important; }
-  .elementor-button, .elementor-button-text             { font-size: clamp(15px, 4vw, 22px) !important; line-height: 1.3 !important; }
+}
+/* Button labels are 36px flat. Left alone above 767px - at tablet width they
+   still fit, and shrinking them there would be a redesign, not a fix. */
+@media (max-width: 767px) {
+  .elementor-button, .elementor-button-text { font-size: clamp(15px, 4vw, 22px) !important; line-height: 1.3 !important; }
   .elementor-button { white-space: normal !important; }
 }
 /* the 63px hero headline is a text-editor widget, not a heading widget */
@@ -116,8 +184,10 @@
 }
 
 /* BLOCK 5 - negative margins. -93px to -100px bottom margins pull the
-   next section up over the headline once the headline reflows on a phone. */
-@media (max-width: 1024px) {
+   next section up over the headline once the headline reflows on a phone.
+   Scoped to phones only: at tablet-landscape width the headline still wraps
+   close to its desktop shape, so the designed overlap is left alone. */
+@media (max-width: 767px) {
   .elementor-element-d5531d9 > .elementor-widget-container,
   .elementor-element-f7c8c65 > .elementor-widget-container,
   .elementor-element-c85bb62 > .elementor-widget-container,
@@ -152,5 +222,24 @@
     max-width: 100% !important;
     white-space: normal !important;
     word-break: break-word;
+  }
+}
+
+/* BLOCK 8 - the same bug expressed as MARGIN instead of padding.
+   On the analytic-suite page (10840) nine text widgets use
+   `margin: 0px 72px 0px 72px` rather than padding. Same leading-zero typo
+   appears here too (`072px`). 390 - 20 - 144 = a 226px text column. */
+@media (max-width: 1024px) {
+  .elementor-element-2edebaa > .elementor-widget-container,
+  .elementor-element-b70ea5c > .elementor-widget-container,
+  .elementor-element-1f5a903 > .elementor-widget-container,
+  .elementor-element-08184d9 > .elementor-widget-container,
+  .elementor-element-ad3ae42 > .elementor-widget-container,
+  .elementor-element-5a35e15 > .elementor-widget-container,
+  .elementor-element-8eac211 > .elementor-widget-container,
+  .elementor-element-c34fd8c > .elementor-widget-container,
+  .elementor-element-de69a5e > .elementor-widget-container {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }

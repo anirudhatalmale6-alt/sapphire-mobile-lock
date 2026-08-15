@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'SAPPHIRE_MOBILE_LOCK_VERSION', '1.0.0' );
 
 /**
- * The four landing pages this plugin was built for.
+ * The five landing pages this plugin was built for.
  *
  * Add a page ID here to bring a new page under the same protection.
  * Leave the array empty to apply the stylesheet site-wide.
@@ -28,7 +28,8 @@ function sapphire_mobile_lock_page_ids() {
 			5037, // swing-trading-stock-seasonality-strategy
 			5276, // swing-trading-stock-price-action-strategy
 			5453, // swing-trading-volume-spike-stock-trading-strategy
-			5456, // day-trading-intraday-seasonality-trading
+			5456,  // day-trading-intraday-seasonality-trading
+			10840, // sapphire-capitals-analytic-suite
 		)
 	);
 }
