@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Sapphire Mobile Lock
  * Description:       Locks the mobile/tablet layout of the Sapphire Capitals Elementor landing pages. Loads after Elementor's per-page CSS so it cannot be undone by Elementor regenerating its files, by an Astra update, or by an Elementor update.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Anirudha Talmale
  * Requires at least: 5.8
  * Requires PHP:      7.0
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SAPPHIRE_MOBILE_LOCK_VERSION', '1.0.0' );
+define( 'SAPPHIRE_MOBILE_LOCK_VERSION', '1.1.0' );
 
 /**
  * The five landing pages this plugin was built for.
