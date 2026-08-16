@@ -243,3 +243,22 @@
     margin-right: 0 !important;
   }
 }
+
+/* BLOCK 9 - mobile side gutter (client request, 16 Aug).
+   With BLOCK 1 zeroing the hard-coded desktop padding, the only remaining
+   inset on a phone is Elementor's default column padding of 10px per side.
+   Nested inner sections compound it to 20px, so the gutter was inconsistent.
+   Set the TOP-LEVEL column to 18px and zero the INNER column so the two can
+   never add up - result is a uniform 18px on every text block.
+   Phone only (<=767px): columns stack there, so an inner column's horizontal
+   padding buys nothing. Tablet and desktop are deliberately untouched. */
+@media (max-width: 767px) {
+  .elementor-top-column > .elementor-widget-wrap.elementor-element-populated {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  .elementor-inner-column > .elementor-widget-wrap.elementor-element-populated {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
